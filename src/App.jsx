@@ -6,7 +6,6 @@ import { useEffect, useState} from "react";
 import {usePageContext} from "./PageContext.jsx";
 
 export default function App() {
-    const {page} = usePageContext()
     const raycaster = new THREE.Raycaster()
     const mouse = new THREE.Vector2()
 
@@ -17,7 +16,6 @@ export default function App() {
 
     useEffect(() => {
         window.addEventListener('click', handleMouseClick)
-        console.log(page)
         return () => {
             window.removeEventListener('click', handleMouseClick)
         }
@@ -37,7 +35,7 @@ export default function App() {
 }
 
 function Models({raycaster, mouse}) {
-    const {page, setPage} = usePageContext()
+    const {value, setValue} = usePageContext()
 
     const models = useLoader(GLTFLoader, '/models.glb')
     let camera = undefined
@@ -56,7 +54,10 @@ function Models({raycaster, mouse}) {
             const intersects = raycaster.intersectObjects(models.scene.children, true)
             if (intersects.length > 0) {
                 if (intersects[0].object.name === 'Crystal_Top' || intersects[0].object.name === 'Crystal_Inner' || intersects[0].object.name === 'Crystal_Walls') {
-                    setPage("about")
+                    setValue("about")
+                }
+                if (intersects[0].object.name === 'Cube001' || intersects[0].object.name === 'Cube001_1' || intersects[0].object.name === 'Crystal_Walls') {
+                    setValue("projects")
                 }
             }
         }
