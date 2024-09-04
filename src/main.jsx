@@ -3,13 +3,14 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import {PageProvider, usePageContext} from './PageContext.jsx'
+import About from "./About.jsx";
 
 function Main(){
     const {value} = usePageContext()
     return (
         <div>
             {value === "home" && <App />}
-            {value === "about" && <h1>About</h1>}
+            {value === "about" && <About />}
             {value === "projects" && <h1>Projects</h1>}
         </div>
     )
