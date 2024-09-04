@@ -1,9 +1,9 @@
 import React, {StrictMode, useContext} from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import {PageProvider, usePageContext} from './PageContext.jsx'
-import About from "./About.jsx";
+import App from './src/App.jsx'
+import './src/index.css'
+import {PageProvider, usePageContext} from './src/PageContext.jsx'
+import About from "./src/About.jsx";
 
 function Main(){
     const {value} = usePageContext()
